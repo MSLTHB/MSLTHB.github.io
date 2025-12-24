@@ -14,16 +14,16 @@
   <meta property="og:url" content="https://mslthb.github.io" />
   <meta property="og:image" content="https://mslthb.github.io/preview.jpg" />
 
-  <!-- Schema.org (валидный) -->
+  <!-- Schema.org -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "name": "ТОП-10 товаров января 2026",
     "itemListElement": [
-      { "@type": "Product", "name": "Беспроводные наушники TWS Pro 2026", "offers": { "@type": "Offer", "price": "2939", "priceCurrency": "RUB" } },
-      { "@type": "Product", "name": "Power Bank 25000 мАч 2026", "offers": { "@type": "Offer", "price": "4427", "priceCurrency": "RUB" } },
-      { "@type": "Product", "name": "HUAWEI Watch FIT 4 2026", "offers": { "@type": "Offer", "price": "8564", "priceCurrency": "RUB" } }
+      { "@type": "Product", "name": "Беспроводные наушники TWS Pro 2026", "offers": { "@type": "Offer", "price": "1890", "priceCurrency": "RUB" } },
+      { "@type": "Product", "name": "Power Bank 25000 мАч 2026", "offers": { "@type": "Offer", "price": "2290", "priceCurrency": "RUB" } },
+      { "@type": "Product", "name": "HUAWEI Watch FIT 4 2026", "offers": { "@type": "Offer", "price": "2490", "priceCurrency": "RUB" } }
     ]
   }
   </script>
@@ -57,6 +57,41 @@
       font-weight: 600;
       margin-bottom: 15px;
     }
+
+    /* БАННЕР СТОЛОТО */
+    .stoloto-banner {
+      background: linear-gradient(135deg, #e63946 0%, #d90429 100%);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 30px;
+      box-shadow: 0 6px 20px rgba(217, 4, 41, 0.3);
+      color: white;
+    }
+    .stoloto-banner h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .stoloto-banner p {
+      margin-bottom: 16px;
+      font-size: 16px;
+      opacity: 0.95;
+    }
+    .stoloto-cta {
+      display: inline-block;
+      background: white;
+      color: #d90429;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 17px;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+    .stoloto-cta:hover {
+      transform: scale(1.03);
+    }
+
     .product {
       background: white;
       border-radius: 16px;
@@ -121,7 +156,6 @@
       color: #777;
     }
 
-    /* СКРЫТАЯ LSI-ПЛИТКА — не удалять */
     .lsi-tiles {
       position: absolute;
       left: -9999px;
@@ -141,7 +175,7 @@
     @media (max-width: 600px) {
       h1 { font-size: 26px; }
       .price-row { flex-direction: column; gap: 6px; }
-      .cta { width: 100%; text-align: center; }
+      .cta, .stoloto-cta { width: 100%; text-align: center; }
     }
   </style>
 </head>
@@ -152,11 +186,18 @@
       <div class="tagline">Не переплачивайте. Мы нашли лучшие цены и самые надёжные модели.</div>
     </header>
 
+    <!-- БАННЕР СТОЛОТО — С ТВОЕЙ ПАРТНЁРСКОЙ ССЫЛКОЙ -->
+    <div class="stoloto-banner">
+      <h2>🎁 А ТЫ УЖЕ ПРОБОВАЛ СВОЙ ШАНС?</h2>
+      <p>Сегодня разыгрывается <strong>5 000 000 ₽</strong>! Один клик — и ты в игре. Партнёрская лотерея Столото — официально и легально.</p>
+      <a href="https://dhwnh.com/g/hwow701jph2940df95cc0e4677dd22/?erid=MvGzQC98w3Z1gMq1kTBxeKvo" target="_blank" class="stoloto-cta">→ Играть бесплатно</a>
+    </div>
+
     <div class="product">
       <div class="badge">🔥 Хит</div>
       <h2>1. Беспроводные наушники TWS Pro 2026</h2>
       <div class="price-row">
-        <span class="price">2 939 ₽</span>
+        <span class="price">1 890 ₽</span>
         <span class="delivery">Доставка: 1–2 дня</span>
       </div>
       <div class="features">Bluetooth 5.4, 40 ч работы, шумоподавление, IPX8. Идеальны для работы и спорта.</div>
@@ -167,7 +208,7 @@
       <div class="badge">⚡ Новинка</div>
       <h2>2. Power Bank 25000 мАч 2026</h2>
       <div class="price-row">
-        <span class="price">8 564 ₽</span>
+        <span class="price">2 290 ₽</span>
         <span class="delivery">Доставка: завтра</span>
       </div>
       <div class="features">Быстрая зарядка 30 Вт, поддержка iPhone 16 и Samsung S26, компактный корпус.</div>
@@ -185,8 +226,14 @@
       <a href="https://market.yandex.ru/cc/8LWWZ8" target="_blank" class="cta">→ Купить со скидкой (осталось 2 шт.)</a>
     </div>
 
-    <!-- СКРЫТАЯ LSI-ПЛИТКА -->
+    <!-- СКРЫТАЯ LSI-ПЛИТКА (обновлена под Столото + товары 2026) -->
     <div class="lsi-tiles">
+      <span>столото партнерка 2026</span>
+      <span>играть в лотерею бесплатно</span>
+      <span>выиграть миллион рублей</span>
+      <span>официальная лотерея столото</span>
+      <span>партнерская ссылка столото</span>
+      <span>заработать на столото</span>
       <span>топ товары 2026</span>
       <span>лучшие гаджеты января 2026</span>
       <span>что купить на вайлдберриз 2026</span>
@@ -220,5 +267,3 @@
   </div>
 </body>
 </html>
-
-
