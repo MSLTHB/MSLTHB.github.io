@@ -6,56 +6,53 @@
 <meta name="theme-color" content="#0d5c3f">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>FitБюджет — вес, питание и бюджет</title>
+<title>FitБюджет</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
 :root{
-  --bg:#f4f1e8;--surface:#fffdf7;--ink:#1d2b23;--mut:#68766d;--line:#e6e0cf;
-  --prime:#0d5c3f;--prime2:#178a5b;--lime:#8fd400;--amber:#e8940a;--red:#d92d20;
-  --sky:#1195db;--violet:#7b5be6;--scrim:#101915;
-  --navh:72px;--hdrh:90px;
+  --bg:#f4f1e8;
+  --surface:#fffdf7;
+  --ink:#1d2b23;
+  --mut:#68766d;
+  --line:#e6e0cf;
+  --prime:#0d5c3f;
+  --prime2:#178a5b;
+  --lime:#8fd400;
+  --amber:#e8940a;
+  --red:#d92d20;
+  --sky:#1195db;
+  --violet:#7b5be6;
+  --navh:72px;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scrollbar-width:thin;scrollbar-color:var(--prime2) var(--bg)}
 ::-webkit-scrollbar{width:8px;height:8px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--prime2);border-radius:8px}
-::-webkit-scrollbar-thumb:hover{background:var(--lime)}
 body{
-  margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);
+  margin:0;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  color:var(--ink);
   background:
     radial-gradient(900px 420px at -10% -5%,rgba(143,212,0,.13),transparent 60%),
     radial-gradient(800px 420px at 110% 110%,rgba(17,149,219,.10),transparent 60%),
     var(--bg);
   min-height:100vh;
 }
-body::before{
-  content:"";position:fixed;inset:0;pointer-events:none;opacity:.045;z-index:0;
-  background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2"/><feColorMatrix type="saturate" values="0"/></filter><rect width="120" height="120" filter="url(%23n)" opacity="0.6"/></svg>');
-}
 .hdr{
-  position:fixed;top:0;left:0;right:0;z-index:40;color:#fff;overflow:hidden;
+  position:fixed;top:0;left:0;right:0;z-index:40;color:#fff;
   background:linear-gradient(120deg,#0a4530 0%,var(--prime) 45%,#0e6b63 100%);
   box-shadow:0 8px 24px rgba(13,92,63,.28);
   padding:calc(10px + env(safe-area-inset-top)) 16px 12px;
 }
-.hdr::after{
-  content:"";position:absolute;inset:-60% -30%;pointer-events:none;
-  background:
-    radial-gradient(420px 180px at 18% 0%,rgba(143,212,0,.30),transparent 60%),
-    radial-gradient(420px 200px at 88% 100%,rgba(17,149,219,.25),transparent 60%);
-  animation:drift 16s ease-in-out infinite alternate;
-}
-@keyframes drift{to{transform:translate3d(4%,7%,0) rotate(2deg)}}
-.hdr-in{position:relative;z-index:1;max-width:520px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.hdr-in{max-width:520px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
 .logo{display:flex;align-items:center;gap:10px}
 .logo-badge{
   width:40px;height:40px;border-radius:13px;display:grid;place-items:center;font-size:21px;
-  background:linear-gradient(135deg,var(--lime),#5eb800);color:#0a3a28;box-shadow:0 4px 12px rgba(0,0,0,.25);
+  background:linear-gradient(135deg,var(--lime),#5eb800);color:#0a3a28;
 }
-.logo b{font-size:17px;letter-spacing:.2px;display:block;line-height:1.1}
+.logo b{font-size:17px;display:block;line-height:1.1}
 .logo small{font-size:11px;opacity:.85}
 .chip{
   font-size:12px;font-weight:800;padding:7px 11px;border-radius:999px;white-space:nowrap;
@@ -64,87 +61,73 @@ body::before{
 .chip.open{background:rgba(143,212,0,.25);border-color:rgba(143,212,0,.6)}
 .chip.fast{background:rgba(232,148,10,.22);border-color:rgba(232,148,10,.55)}
 main{
-  position:relative;z-index:1;max-width:520px;margin:0 auto;
-  padding:calc(var(--hdrh) + env(safe-area-inset-top) + 12px) 14px calc(var(--navh) + env(safe-area-inset-bottom) + 92px);
+  max-width:520px;margin:0 auto;
+  padding:calc(92px + env(safe-area-inset-top)) 14px calc(var(--navh) + env(safe-area-inset-bottom) + 90px);
 }
 .tab{display:none}
 .tab.active{display:block}
-.tab.active .card{animation:rise .45s cubic-bezier(.2,.8,.3,1) both}
-.tab.active .card:nth-child(2){animation-delay:.05s}
-.tab.active .card:nth-child(3){animation-delay:.10s}
-.tab.active .card:nth-child(4){animation-delay:.15s}
-.tab.active .card:nth-child(5){animation-delay:.20s}
-@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 .card{
-  background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;margin:0 0 14px;
-  box-shadow:0 6px 18px rgba(29,43,35,.06);
+  background:var(--surface);border:1px solid var(--line);border-radius:18px;
+  padding:16px;margin:0 0 14px;box-shadow:0 6px 18px rgba(29,43,35,.06);
 }
 .card h2{margin:0 0 12px;font-size:16px;font-weight:850}
-.card h3{margin:0 0 8px;font-size:14px;font-weight:850}
 .muted{color:var(--mut);font-size:12.5px;line-height:1.45}
-.big{font-size:26px;font-weight:850;font-variant-numeric:tabular-nums}
-.row{display:flex;align-items:center;gap:12px}
+.row{display:flex;align-items:center;gap:10px}
 .grow{flex:1;min-width:0}
 .btn{
-  appearance:none;border:0;border-radius:13px;padding:12px 16px;font-size:14px;font-weight:800;cursor:pointer;
-  background:linear-gradient(135deg,var(--prime),var(--prime2));color:#fff;
-  box-shadow:0 5px 14px rgba(13,92,63,.25);transition:transform .12s,box-shadow .12s,filter .12s;
+  appearance:none;border:0;border-radius:13px;padding:12px 16px;font-size:14px;font-weight:800;
+  cursor:pointer;background:linear-gradient(135deg,var(--prime),var(--prime2));color:#fff;
+  box-shadow:0 5px 14px rgba(13,92,63,.25);
 }
-.btn:active{transform:translateY(1px) scale(.98);box-shadow:0 2px 8px rgba(13,92,63,.2)}
+.btn:active{transform:scale(.98)}
 .btn.block{width:100%}
 .btn.ghost{background:transparent;color:var(--prime);border:1.5px solid var(--prime2);box-shadow:none}
-.btn.amber{background:linear-gradient(135deg,#c97c05,var(--amber));box-shadow:0 5px 14px rgba(232,148,10,.25)}
-.btn.sky{background:linear-gradient(135deg,#0b76b0,var(--sky));box-shadow:0 5px 14px rgba(17,149,219,.25)}
+.btn.amber{background:linear-gradient(135deg,#c97c05,var(--amber))}
+.btn.sky{background:linear-gradient(135deg,#0b76b0,var(--sky))}
 .btn.danger{background:transparent;color:var(--red);border:1.5px solid var(--red);box-shadow:none}
 .btn.small{padding:8px 12px;font-size:12.5px;border-radius:10px}
-.btn:disabled{opacity:.5;cursor:default}
 input,select{
-  font:inherit;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:11px;
-  padding:10px 12px;outline:none;max-width:100%;
+  font:inherit;color:var(--ink);background:#fff;border:1.5px solid var(--line);
+  border-radius:11px;padding:10px 12px;outline:none;max-width:100%;
 }
 input:focus,select:focus{border-color:var(--prime2);box-shadow:0 0 0 3px rgba(23,138,91,.15)}
-input[type=number]{width:100px;font-variant-numeric:tabular-nums}
+input[type=number]{width:100px}
 input[type=search]{width:100%}
-.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 8px;scrollbar-width:none}
-.chips::-webkit-scrollbar{display:none}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 8px}
 .fchip{
-  flex:0 0 auto;border:1.5px solid var(--line);background:#fff;color:var(--mut);border-radius:999px;
-  padding:7px 12px;font-size:12.5px;font-weight:800;cursor:pointer;
+  flex:0 0 auto;border:1.5px solid var(--line);background:#fff;color:var(--mut);
+  border-radius:999px;padding:7px 12px;font-size:12.5px;font-weight:800;cursor:pointer;
 }
 .fchip.on{background:var(--prime);border-color:var(--prime);color:#fff}
 .list{display:flex;flex-direction:column;gap:8px}
 .item{
-  display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;
-  padding:11px 12px;cursor:pointer;transition:border-color .12s,transform .12s,background .12s;
+  display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);
+  border-radius:14px;padding:11px 12px;cursor:pointer;
 }
 .item:active{transform:scale(.99);border-color:var(--prime2)}
-.item.selected{background:rgba(143,212,0,.14);border-color:var(--prime2)}
 .item .nm{font-weight:800;font-size:13.5px;line-height:1.25}
 .item .sub{font-size:11.5px;color:var(--mut);margin-top:2px}
 .item .right{text-align:right;white-space:nowrap}
-.item .kcal{font-weight:850;font-size:13.5px;font-variant-numeric:tabular-nums}
+.item .kcal{font-weight:850;font-size:13.5px}
 .item .cost{color:var(--amber);font-weight:850;font-size:12px}
 .tag{display:inline-block;font-size:10px;font-weight:850;padding:2px 7px;border-radius:999px;background:rgba(23,138,91,.12);color:var(--prime)}
-.chev{color:var(--mut);font-size:16px}
 .empty{padding:18px;text-align:center;color:var(--mut);font-size:13px;border:1.5px dashed var(--line);border-radius:14px}
 .ringwrap{display:flex;align-items:center;gap:16px}
 .ring{position:relative;width:132px;height:132px;flex:0 0 auto}
 .ring svg{transform:rotate(-90deg)}
 .ring circle{fill:none;stroke-width:12;stroke-linecap:round}
 .ring .bgc{stroke:#ece7d8}
-.ring .fg{stroke:url(#gRing);transition:stroke-dashoffset .6s cubic-bezier(.2,.8,.3,1)}
+.ring .fg{stroke:url(#gRing);transition:stroke-dashoffset .6s}
 .ring .ctr{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.ring .ctr b{font-size:24px;font-weight:850;font-variant-numeric:tabular-nums;line-height:1}
+.ring .ctr b{font-size:24px;font-weight:850;line-height:1}
 .ring .ctr small{font-size:10.5px;color:var(--mut);margin-top:4px}
 .stat{margin:0 0 10px}
 .stat .lab{display:flex;justify-content:space-between;font-size:12px;font-weight:800;color:var(--mut);margin-bottom:5px}
-.stat .lab b{color:var(--ink);font-variant-numeric:tabular-nums}
 .track{height:9px;border-radius:99px;background:#ece7d8;overflow:hidden}
 .track i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--prime2),var(--lime));transition:width .5s}
 .track.money i{background:linear-gradient(90deg,#c97c05,var(--amber))}
-.track.water i{background:linear-gradient(90deg,#0b76b0,var(--sky))}
 .ifbig{font-size:17px;font-weight:850;margin:0 0 4px}
-.ifcount{font-size:28px;font-weight:850;font-variant-numeric:tabular-nums;letter-spacing:.5px;color:var(--prime)}
+.ifcount{font-size:28px;font-weight:850;color:var(--prime)}
 .dots{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
 .dot{width:22px;height:22px;border-radius:7px;background:#e5f2fa;border:1.5px solid #bcdcf0}
 .dot.f{background:linear-gradient(135deg,#0b76b0,var(--sky));border-color:#0b76b0}
@@ -153,8 +136,8 @@ input[type=search]{width:100%}
   font-size:12.5px;line-height:1.5;color:#6b5310;margin:12px 0 0;
 }
 .bars{display:flex;align-items:flex-end;gap:5px;height:110px;margin:12px 0 4px}
-.bar{flex:1;min-width:6px;border-radius:6px 6px 3px 3px;background:linear-gradient(180deg,var(--amber),#f3b64e);opacity:.55;position:relative}
-.bar.today{opacity:1;box-shadow:0 3px 10px rgba(232,148,10,.35)}
+.bar{flex:1;min-width:6px;border-radius:6px 6px 3px 3px;background:linear-gradient(180deg,var(--amber),#f3b64e);opacity:.55}
+.bar.today{opacity:1}
 .barlabs{display:flex;gap:5px}
 .barlabs span{flex:1;text-align:center;font-size:9.5px;color:var(--mut)}
 .shop{display:flex;align-items:center;gap:10px;padding:9px 4px;border-bottom:1px dashed var(--line);font-size:13px}
@@ -166,9 +149,8 @@ input[type=search]{width:100%}
 canvas{width:100%;height:230px;display:block}
 .setrow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:13.5px;font-weight:700}
 .setrow:last-child{border-bottom:0}
-.setrow select{padding:8px 10px}
 .nav{
-  position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(255,253,247,.96);backdrop-filter:blur(10px);
+  position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(255,253,247,.96);
   border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom));
   box-shadow:0 -8px 24px rgba(29,43,35,.08);
 }
@@ -176,19 +158,15 @@ canvas{width:100%;height:230px;display:block}
 .nav button{
   flex:1;background:none;border:0;cursor:pointer;color:var(--mut);display:flex;flex-direction:column;
   align-items:center;gap:3px;padding:6px 2px;border-radius:12px;font-size:10px;font-weight:800;
-  transition:color .15s,background .15s,transform .1s;
 }
-.nav button:active{transform:scale(.94)}
 .nav button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .nav button.on{color:var(--prime);background:rgba(143,212,0,.16)}
-.nav button.on svg{stroke:var(--prime)}
-#overlay{position:fixed;inset:0;z-index:60;background:rgba(16,25,21,.5);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .25s}
+#overlay{position:fixed;inset:0;z-index:60;background:rgba(16,25,21,.5);opacity:0;pointer-events:none;transition:opacity .25s}
 #overlay.open{opacity:1;pointer-events:auto}
 #sheet{
   position:fixed;left:50%;bottom:0;z-index:61;width:min(520px,100%);max-height:84vh;overflow:auto;
   background:var(--surface);border-radius:22px 22px 0 0;padding:10px 16px calc(18px + env(safe-area-inset-bottom));
-  transform:translate(-50%,105%);transition:transform .32s cubic-bezier(.22,.9,.3,1);
-  box-shadow:0 -12px 40px rgba(16,25,21,.3);
+  transform:translate(-50%,105%);transition:transform .32s;box-shadow:0 -12px 40px rgba(16,25,21,.3);
 }
 #sheet.open{transform:translate(-50%,0)}
 .grab{width:44px;height:5px;border-radius:99px;background:var(--line);margin:2px auto 12px}
@@ -205,17 +183,10 @@ canvas{width:100%;height:230px;display:block}
 #toast{
   position:fixed;left:50%;bottom:calc(var(--navh) + env(safe-area-inset-bottom) + 14px);z-index:70;
   transform:translate(-50%,20px);opacity:0;pointer-events:none;transition:all .25s;max-width:min(480px,92vw);
-  background:var(--scrim);color:#f4f1e8;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;
-  font-size:13px;box-shadow:0 10px 30px rgba(16,25,21,.4);
+  background:#101915;color:#f4f1e8;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;font-size:13px;
 }
 #toast.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
 #toastAct{background:none;border:0;color:var(--lime);font-weight:850;font-size:13px;cursor:pointer;white-space:nowrap}
-.bulkbar{display:none;position:sticky;bottom:8px;z-index:5;background:var(--scrim);color:#fff;border-radius:14px;padding:10px 12px;margin-top:10px;align-items:center;gap:10px;font-size:13px}
-.bulkbar.show{display:flex}
-.bulkbar .btn{padding:8px 12px;font-size:12px}
-.check{width:20px;height:20px;border-radius:6px;border:2px solid var(--prime2);display:grid;place-items:center;color:#fff;font-size:12px;font-weight:900}
-.check.on{background:var(--prime2)}
-.drag{color:var(--mut);font-size:16px;cursor:grab}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -224,7 +195,7 @@ canvas{width:100%;height:230px;display:block}
   <div class="hdr-in">
     <div class="logo">
       <div class="logo-badge">🥗</div>
-      <div><b>FitБюджет</b><small id="hdrDate">—</small></div>
+      <div><b>FitБюджет</b><small id="hdrDate">загрузка…</small></div>
     </div>
     <div class="chip" id="hdrIf">—</div>
   </div>
@@ -233,7 +204,7 @@ canvas{width:100%;height:230px;display:block}
 <main>
 <section class="tab active" id="tab-today">
   <div class="card">
-    <div class="row" style="justify-content:space-between;margin-bottom:8px">
+    <div class="row" style="justify-content:space-between">
       <div>
         <p class="ifbig" id="ifBig">—</p>
         <p class="muted" id="ifRange" style="margin:0">—</p>
@@ -274,7 +245,7 @@ canvas{width:100%;height:230px;display:block}
           <div class="lab"><span>Стоимость дня</span><b id="costVal" style="color:var(--amber)">0 ₽</b></div>
           <div class="track money"><i id="costBar" style="width:0%"></i></div>
         </div>
-        <div class="muted">Крупы взвешивай сухими, мясо и рыбу — сырыми. Жидкости — в мл.</div>
+        <div class="muted">Крупы — сухими, мясо и рыбу — сырыми. Жидкости — в мл.</div>
       </div>
     </div>
   </div>
@@ -288,12 +259,12 @@ canvas{width:100%;height:230px;display:block}
       <button class="btn sky grow" data-act="wAdd">+ стакан (250 мл)</button>
       <button class="btn ghost small" data-act="wSub">−</button>
     </div>
-    <div class="warn">При грыже вода и мягкий стул — обязательны. Свёкла, овсянка, чернослив. Без газировки, сырой капусты и бобовых.</div>
+    <div class="warn">При грыже вода и мягкий стул обязательны. Свёкла, овсянка, чернослив. Без газировки, сырой капусты и бобовых.</div>
   </div>
 
   <div class="card">
     <h2>Праздник / крепкий алкоголь</h2>
-    <p class="muted" style="margin-top:0">Считает калории и стоимость. Не является разрешением пить много: при грыже опасны тошнота, рвота и натуживание.</p>
+    <p class="muted" style="margin-top:0">Считает калории и стоимость. При грыже опасны тошнота, рвота и натуживание.</p>
     <div class="row">
       <input type="number" id="alcMl" min="0" max="1000" step="50" value="250" class="grow">
       <button class="btn ghost small" data-act="alcStep" data-d="-50">−50</button>
@@ -301,7 +272,7 @@ canvas{width:100%;height:230px;display:block}
     </div>
     <div class="prev" id="alcPrev">—</div>
     <button class="btn amber block" data-act="alcAdd">Добавить алкоголь в дневник</button>
-    <div class="warn" id="alcWarn">Вода 1:1, только после еды, стоп при первой тошноте. 500 мл — высокий риск.</div>
+    <div class="warn" id="alcWarn">Вода 1:1, только после еды, стоп при первой тошноте.</div>
   </div>
 
   <div class="card">
@@ -312,7 +283,7 @@ canvas{width:100%;height:230px;display:block}
     <div class="list" id="diaryList"></div>
     <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
       <button class="btn block" data-act="addOpen">＋ Добавить продукт</button>
-      <button class="btn ghost block" data-act="sample">Загрузить пример дня (~2100 ккал · ~280 ₽)</button>
+      <button class="btn ghost block" data-act="sample">Загрузить пример дня (~2100 ккал)</button>
     </div>
   </div>
 </section>
@@ -323,7 +294,7 @@ canvas{width:100%;height:230px;display:block}
       <h2 style="margin:0">Продукты и цены</h2>
       <button class="btn small" data-act="foodAdd">＋ Продукт</button>
     </div>
-    <div class="field"><input type="search" id="foodQ" placeholder="Поиск: курица, творог, гречка…"></div>
+    <div class="field"><input type="search" id="foodQ" placeholder="Поиск продукта…"></div>
     <div class="row" style="margin-bottom:10px">
       <select id="foodSort" class="grow">
         <option value="name">По имени</option>
@@ -331,16 +302,10 @@ canvas{width:100%;height:230px;display:block}
         <option value="p">Белок ↓</option>
         <option value="pr">Цена ↑</option>
       </select>
-      <button class="btn ghost small" data-act="bulk" id="bulkBtn">Выбрать</button>
     </div>
     <div class="chips" id="catChips"></div>
     <div class="list" id="foodList"></div>
-    <div class="bulkbar" id="bulkBar">
-      <span class="grow" id="bulkCount">Выбрано: 0</span>
-      <button class="btn danger small" data-act="bulkDel" style="color:#ffb4ab;border-color:#ffb4ab">Удалить</button>
-      <button class="btn small" data-act="bulkCancel" style="background:#3a4a41">Отмена</button>
-    </div>
-    <div class="warn">Цены примерные — нажми на продукт и поставь цену своего магазина. Тогда бюджет считается точно.</div>
+    <div class="warn">Нажми на продукт, чтобы изменить цену своего магазина.</div>
   </div>
 </section>
 
@@ -349,7 +314,7 @@ canvas{width:100%;height:230px;display:block}
     <h2>Бюджет на месяц</h2>
     <div class="row" style="justify-content:space-between;align-items:flex-end;margin-bottom:8px">
       <div>
-        <div class="big" id="bSpent" style="color:var(--amber)">0 ₽</div>
+        <div style="font-size:26px;font-weight:850;color:var(--amber)" id="bSpent">0 ₽</div>
         <div class="muted" id="bLimit">из 10 000 ₽</div>
       </div>
       <div style="text-align:right">
@@ -361,7 +326,6 @@ canvas{width:100%;height:230px;display:block}
     <p style="margin:12px 0 0;font-weight:850;font-size:15px">Можно тратить: <span id="bPerDay" style="color:var(--prime)">—</span> ₽/день</p>
     <div class="bars" id="bBars"></div>
     <div class="barlabs" id="bBarLabs"></div>
-    <div class="muted" style="margin-top:6px">Расходы по дням за последние 2 недели. Сегодня выделено.</div>
   </div>
 
   <div class="card">
@@ -372,7 +336,6 @@ canvas{width:100%;height:230px;display:block}
     <p class="muted" id="shopProg" style="margin:0 0 8px">—</p>
     <div id="shopList"></div>
     <p style="margin:12px 0 0;font-weight:850">Итого: <span id="shopSum" style="color:var(--amber)">—</span></p>
-    <div class="warn">Это корзина под рацион ~2100 ккал/день. Алкоголь сюда не входит. При лимите 10 000 ₽/мес остаётся запас на чернослив, кефир, печень, сельдь и чай.</div>
   </div>
 </section>
 
@@ -404,7 +367,6 @@ canvas{width:100%;height:230px;display:block}
       <input type="date" id="wDate">
       <button class="btn" data-act="weightAdd">＋</button>
     </div>
-    <p class="muted" style="margin:10px 0 0">Взвешивайся раз в неделю: утром, натощак, после туалета. После застолья не взвешивайся 3 дня — вода исказит картину.</p>
     <div class="list" id="wList" style="margin-top:12px"></div>
   </div>
 </section>
@@ -412,7 +374,7 @@ canvas{width:100%;height:230px;display:block}
 <section class="tab" id="tab-more">
   <div class="card" id="installCard">
     <h2>Установить на телефон</h2>
-    <p class="muted" id="installHint">В Chrome нажми ⋮ → «Установить приложение» или «Добавить на главный экран». Появится иконка, приложение будет работать офлайн.</p>
+    <p class="muted" id="installHint">В Chrome нажми ⋮ → «Установить приложение» или «Добавить на главный экран».</p>
     <button class="btn block" data-act="install" id="installBtn" style="display:none;margin-top:10px">Установить приложение</button>
   </div>
 
@@ -427,32 +389,20 @@ canvas{width:100%;height:230px;display:block}
     <div class="setrow"><span>Стартовый вес, кг</span><input type="number" id="stW0" step="0.1"></div>
     <div class="setrow"><span>Целевой вес, кг</span><input type="number" id="stW1" step="0.1"></div>
     <div class="setrow"><span>Праздничный алкоголь, мл</span><input type="number" id="stAlc" min="0" max="1000" step="50"></div>
-    <button class="btn ghost block" data-act="planReset" style="margin-top:12px">Вернуть мой план (2100 / 130 / 10000 / 12–20)</button>
-    <div class="warn">Настройки применяются сразу. Режим питания и алкоголь согласуй с врачом — послеоперационная грыжа.</div>
+    <button class="btn ghost block" data-act="planReset" style="margin-top:12px">Вернуть мой план</button>
+    <div class="warn">Режим питания и алкоголь согласуй с врачом — послеоперационная грыжа.</div>
   </div>
 
   <div class="card">
-    <h2>Безопасность при грыже</h2>
-    <ul class="muted" style="margin:0;padding-left:18px">
-      <li>Не допускать запоров: вода, свёкла, овсянка, чернослив.</li>
-      <li>Не поднимать тяжести, не качать пресс, не делать планку без разрешения врача.</li>
-      <li>Алкоголь — только после еды, вода 1:1, без газировки и пива.</li>
-      <li>Первая тошнота — полный стоп. Рвота при грыже опасна.</li>
-      <li>Грыжа стала твёрдой, болезненной, не вправляется, началась рвота — скорая.</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>Данные и обновление</h2>
+    <h2>Данные</h2>
     <div style="display:flex;flex-direction:column;gap:8px">
       <button class="btn block" data-act="export">Экспорт (резервная копия)</button>
       <button class="btn ghost block" data-act="import">Импорт копии</button>
       <input type="file" id="importFile" accept=".json,application/json" style="display:none">
       <button class="btn ghost block" data-act="updateApp">Обновить приложение с GitHub</button>
-      <button class="btn ghost block" data-act="iconDl">Скачать иконку 512×512 PNG (для APK)</button>
       <button class="btn danger block" data-act="resetAll">Сбросить все данные</button>
     </div>
-    <p class="muted" style="margin:12px 0 0">Всё работает без интернета и хранится только на этом устройстве. Никаких аккаунтов и отправки данных.</p>
+    <p class="muted" style="margin:12px 0 0">Данные хранятся только на этом устройстве.</p>
   </div>
 </section>
 </main>
@@ -487,7 +437,7 @@ canvas{width:100%;height:230px;display:block}
 <script>
 "use strict";
 
-var KEY="mslthb_fit_v4";
+var KEY="mslthb_fit_v5";
 var CATS={all:"Все",grain:"Крупы и хлеб",protein:"Мясо и яйца",veg:"Овощи и фрукты",dairy:"Молочное",fish:"Рыба",alc:"Алкоголь",other:"Прочее"};
 var DEF_SET={kcal:2100,prot:130,budget:10000,ws:12,we:20,water:2500,w0:120,w1:95,alc:250};
 
@@ -550,7 +500,7 @@ function makeEntry(f,amount){
 
 function seed(){
  var foods=SEED_FOODS.map(function(f){return {id:uid(),n:f.n,k:f.k,p:f.p,pr:f.pr,c:f.c,u:f.u};});
- var st={v:4,foods:foods,days:{},weights:[],shop:{},set:JSON.parse(JSON.stringify(DEF_SET)),ui:{sort:"name",cat:"all"}};
+ var st={v:5,foods:foods,days:{},weights:[],shop:{},set:JSON.parse(JSON.stringify(DEF_SET)),ui:{sort:"name",cat:"all"}};
  st.days[today()]={e:[],w:0};
  st.weights=[{d:today(),w:120}];
  return st;
@@ -637,16 +587,15 @@ function renderToday(){
 
  var rows="";
  d.e.forEach(function(e){
-  rows+='<div class="item" draggable="true" data-drag="'+e.id+'" data-act="entryEdit" data-id="'+e.id+'">'+
-   '<span class="drag">↕</span>'+
+  rows+='<div class="item" data-act="entryEdit" data-id="'+e.id+'">'+
    '<div class="grow"><div class="nm">'+esc(e.n)+'</div><div class="sub">'+e.g+' '+unitName(e.u)+' · белок '+e.p+' г</div></div>'+
    '<div class="right"><div class="kcal">'+e.k+' ккал</div><div class="cost">'+e.c+' ₽</div></div>'+
-   '<div class="chev">›</div></div>';
+   '<div>›</div></div>';
  });
  g("diaryList").innerHTML=rows||'<div class="empty">Пока пусто. Добавь продукт или загрузи пример дня.</div>';
 }
 
-var bulk=false,sel={},uiQ="";
+var uiQ="";
 function renderChips(){
  var h="";for(var k in CATS)h+='<button class="fchip'+(S.ui.cat===k?" on":"")+'" data-act="fcat" data-id="'+k+'">'+CATS[k]+'</button>';
  g("catChips").innerHTML=h;
@@ -663,20 +612,15 @@ function filteredFoods(){
  });
  return arr;
 }
-function renderFoodList(){
+function renderFoods(){
  var arr=filteredFoods(),h="";
  arr.forEach(function(f){
-  var left=bulk?'<span class="check'+(sel[f.id]?" on":"")+'">'+(sel[f.id]?"✓":"")+'</span>':"";
-  h+='<div class="item'+(bulk&&sel[f.id]?" selected":"")+'" data-act="'+(bulk?"bsel":"foodEdit")+'" data-id="'+f.id+'">'+
-   left+'<div class="grow"><div class="nm">'+esc(f.n)+'</div><div class="sub"><span class="tag">'+CATS[f.c]+'</span> · '+f.k+' ккал · белок '+f.p+' г · на 100 '+unitName(f.u)+'</div></div>'+
+  h+='<div class="item" data-act="foodEdit" data-id="'+f.id+'">'+
+   '<div class="grow"><div class="nm">'+esc(f.n)+'</div><div class="sub"><span class="tag">'+CATS[f.c]+'</span> · '+f.k+' ккал · белок '+f.p+' г · на 100 '+unitName(f.u)+'</div></div>'+
    '<div class="right"><div class="cost">'+f.pr+' ₽/'+(f.u==="ml"?"л":"кг")+'</div></div>'+
-   (bulk?"":'<div class="chev">›</div>')+'</div>';
+   '<div>›</div></div>';
  });
- g("foodList").innerHTML=h||'<div class="empty">Ничего не найдено. Измени запрос или добавь продукт.</div>';
- var n=Object.keys(sel).filter(function(k){return sel[k];}).length;
- g("bulkCount").textContent="Выбрано: "+n;
- g("bulkBar").classList.toggle("show",bulk);
- g("bulkBtn").textContent=bulk?"Готово":"Выбрать";
+ g("foodList").innerHTML=h||'<div class="empty">Ничего не найдено.</div>';
 }
 
 function shopItems(){
@@ -751,7 +695,7 @@ function renderWeight(){
    var eta=new Date();eta.setDate(eta.getDate()+Math.ceil(weeks*7));
    pace="Темп: −"+rate.toFixed(2)+" кг/нед. При таком темпе цель "+set.w1+" кг ≈ "+eta.toLocaleDateString("ru-RU",{month:"long",year:"numeric"})+".";
   }else{
-   pace="Пока вес стоит. Проверь калории и шаги — и не взвешивайся чаще раза в неделю.";
+   pace="Пока вес стоит. Проверь калории и шаги.";
   }
  }
  g("wPace").textContent=pace;
@@ -812,7 +756,7 @@ function drawChart(){
  ctx.fillText(w[li].d.slice(5),W-R-32,H-8);
 }
 
-function renderSettings(){
+function renderSets(){
  var s=S.set;
  g("stKcal").value=s.kcal;
  g("stProt").value=s.prot;
@@ -824,9 +768,9 @@ function renderSettings(){
  g("stW1").value=s.w1;
  g("stAlc").value=s.alc;
 }
-function readSettings(){
+function readSets(){
  var ws=parseInt(g("stWs").value,10),we=parseInt(g("stWe").value,10);
- if(ws>=we){toast("Начало окна должно быть раньше конца");renderSettings();return;}
+ if(ws>=we){toast("Начало окна должно быть раньше конца");renderSets();return;}
  S.set={
   kcal:Math.max(1200,num(g("stKcal").value)||DEF_SET.kcal),
   prot:Math.max(40,num(g("stProt").value)||DEF_SET.prot),
@@ -850,7 +794,7 @@ function renderAlc(){
  var cost=r1(f.pr*ml/1000);
  g("alcPrev").innerHTML=ml+" мл ≈ <strong>"+kcal+" ккал</strong> · <span style='color:var(--amber)">'+cost+' ₽</span>';
  g("alcWarn").textContent=ml>=500
-  ?"500 мл — высокий риск при грыже. Только после еды, вода 1:1, стоп при первой тошноте. Не доводи до рвоты."
+  ?"500 мл — высокий риск при грыже. Только после еды, вода 1:1, стоп при первой тошноте."
   :"Вода 1:1, только после еды, без газировки и пива. Стоп при первой тошноте.";
 }
 
@@ -905,9 +849,9 @@ function renderPicker(q){
  var rows="";
  arr.forEach(function(f){
   rows+='<div class="item" data-act="pickFood" data-id="'+f.id+'"><div class="grow"><div class="nm">'+esc(f.n)+
-   '</div><div class="sub">'+f.k+' ккал · '+f.p+' г белка · '+f.pr+' ₽/'+(f.u==="ml"?"л":"кг")+'</div></div><div class="chev">›</div></div>';
+   '</div><div class="sub">'+f.k+' ккал · '+f.p+' г белка · '+f.pr+' ₽/'+(f.u==="ml"?"л":"кг")+'</div></div><div>›</div></div>';
  });
- g("pickList").innerHTML=rows||'<div class="empty">Не найдено. Добавь продукт во вкладке «Продукты».</div>';
+ g("pickList").innerHTML=rows||'<div class="empty">Не найдено.</div>';
 }
 
 function openEntrySheet(food,entry){
@@ -920,15 +864,14 @@ function openEntrySheet(food,entry){
   '<button data-act="gStep" data-d="10">＋</button></div></div>'+
   '<div class="prev" id="shPrev"></div>'+
   '<button class="btn block" data-act="entrySave">'+(entry?"Сохранить":"Добавить в дневник")+'</button>'+
-  (entry?'<div class="row" style="margin-top:8px"><button class="btn ghost grow" data-act="entryUp">↑ Выше</button><button class="btn ghost grow" data-act="entryDown">↓ Ниже</button></div>'+
-  '<button class="btn danger block" data-act="entryDel" style="margin-top:8px">Удалить запись</button>':""));
+  (entry?'<button class="btn danger block" data-act="entryDel" style="margin-top:8px">Удалить запись</button>':""));
  updPrev();
  g("shG").addEventListener("input",updPrev);
 }
 function updPrev(){
  if(!ctx||!ctx.food)return;
  var amount=Math.max(1,num(g("shG").value)),f=ctx.food;
- g("shPrev").innerHTML=Math.round(f.k*amount/100)+" ккал · "+r1(f.p*amount/100)+" г белка · <span style='color:var(--amber)'>"+r1(f.pr*amount/1000)+" ₽</span>";
+ g("shPrev").innerHTML=Math.round(f.k*amount/100)+" ккал · "+r1(f.p*amount/100)+" г белка · <span style='color:var(--amber)">'+r1(f.pr*amount/1000)+" ₽</span>";
 }
 
 function openFoodSheet(f){
@@ -945,17 +888,6 @@ function openFoodSheet(f){
   '<div class="field"><label>Цена, ₽ за кг или литр</label><input type="number" id="fPrice" value="'+(f?f.pr:"")+'"></div>'+
   '<button class="btn block" data-act="foodSave">Сохранить</button>'+
   (f?'<button class="btn danger block" data-act="foodDel" style="margin-top:8px">Удалить продукт</button>':""));
-}
-
-function moveEntry(id,dir){
- var a=day().e,i=-1;
- for(var j=0;j<a.length;j++)if(a[j].id===id){i=j;break;}
- if(i<0)return;
- var ni=i+dir;
- if(ni<0||ni>=a.length)return;
- var item=a.splice(i,1)[0];
- a.splice(ni,0,item);
- save();renderToday();toast("Порядок изменён");
 }
 
 var ACT={
@@ -988,15 +920,13 @@ var ACT={
    openEntrySheet(f,e);return;
   }
  },
- entryUp:function(){if(ctx&&ctx.eid){moveEntry(ctx.eid,-1);closeSheet();}},
- entryDown:function(){if(ctx&&ctx.eid){moveEntry(ctx.eid,1);closeSheet();}},
  sample:function(){
   if(day().e.length&&!confirm("Заменить сегодняшний дневник примером дня?"))return;
   var out=[];
   SAMPLE.forEach(function(it){var f=foodByName(it[0])||seedByName(it[0]);if(f)out.push(makeEntry(f,it[1]));});
-  day().e=out;save();renderAll();toast("Пример дня загружен: ~2100 ккал");buzz();
+  day().e=out;save();renderAll();toast("Пример дня загружен");buzz();
  },
- clearDay:function(){if(!day().e.length)return;destructive(function(){day().e=[];},"Дневник за сегодня очищен");},
+ clearDay:function(){if(!day().e.length)return;destructive(function(){day().e=[];},"Дневник очищен");},
  wAdd:function(){day().w=Math.min(5000,day().w+250);save();renderToday();buzz();},
  wSub:function(){day().w=Math.max(0,day().w-250);save();renderToday();},
  alcStep:function(el){var i=g("alcMl");i.value=Math.max(0,Math.min(1000,num(i.value)+parseInt(el.dataset.d,10)));renderAlc();},
@@ -1006,7 +936,7 @@ var ACT={
   if(ml>=500&&!confirm("500 мл — высокий риск при грыже. Добавить в дневник?"))return;
   var f=foodByName("Водка / коньяк 40%")||seedByName("Водка / коньяк 40%");
   day().e.push(makeEntry(f,ml));
-  save();renderAll();toast("Алкоголь добавлен: "+Math.round(f.k*ml/100)+" ккал");buzz();
+  save();renderAll();toast("Алкоголь добавлен");buzz();
  },
  foodAdd:function(){openFoodSheet(null);},
  foodEdit:function(el){var f=foodById(el.dataset.id);if(f)openFoodSheet(f);},
@@ -1019,16 +949,7 @@ var ACT={
   save();closeSheet();renderAll();
  },
  foodDel:function(){if(!ctx)return;var id=ctx.fid;closeSheet();destructive(function(){S.foods=S.foods.filter(function(f){return f.id!==id;});},"Продукт удалён");},
- fcat:function(el){S.ui.cat=el.dataset.id;save();renderChips();renderFoodList();},
- bulk:function(){bulk=!bulk;sel={};renderFoodList();},
- bulkCancel:function(){bulk=false;sel={};renderFoodList();},
- bsel:function(el){var id=el.dataset.id;sel[id]=!sel[id];renderFoodList();},
- bulkDel:function(){
-  var ids=Object.keys(sel).filter(function(k){return sel[k];});
-  if(!ids.length){toast("Ничего не выбрано");return;}
-  bulk=false;var keep=sel;sel={};
-  destructive(function(){S.foods=S.foods.filter(function(f){return !keep[f.id];});},"Удалено продуктов: "+ids.length);
- },
+ fcat:function(el){S.ui.cat=el.dataset.id;save();renderChips();renderFoods();},
  shopReset:function(){S.shop={};save();renderBudget();toast("Отметки списка сброшены");},
  weightAdd:function(){
   var w=num(g("wKg").value),d=g("wDate").value||today();
@@ -1038,7 +959,7 @@ var ACT={
   save();g("wKg").value="";renderWeight();toast("Вес записан");buzz();
  },
  weightDel:function(el){var i=parseInt(el.dataset.id,10);destructive(function(){S.weights.splice(i,1);},"Взвешивание удалено");},
- planReset:function(){S.set=JSON.parse(JSON.stringify(DEF_SET));save();g("alcMl").value=S.set.alc;renderAll();toast("Твой план восстановлен");},
+ planReset:function(){S.set=JSON.parse(JSON.stringify(DEF_SET));save();g("alcMl").value=S.set.alc;renderAll();toast("План восстановлен");},
  export:function(){
   var b=new Blob([JSON.stringify(S,null,1)],{type:"application/json"});
   var a=document.createElement("a");
@@ -1052,7 +973,7 @@ var ACT={
  resetAll:function(){
   if(!confirm("Удалить ВСЕ данные приложения?"))return;
   if(!confirm("Точно сбросить? Сначала лучше сделать экспорт."))return;
-  destructive(function(){S=seed();},"Данные сброшены к стартовым");
+  destructive(function(){S=seed();},"Данные сброшены");
  },
  install:function(){if(deferred){deferred.prompt();deferred=null;g("installBtn").style.display="none";}},
  updateApp:function(){
@@ -1072,13 +993,6 @@ var ACT={
   }catch(e){reload();}
   setTimeout(reload,2500);
  },
- iconDl:function(){
-  var c=drawIcon(512),a=document.createElement("a");
-  a.href=c.toDataURL("image/png");
-  a.download="icon-512.png";
-  a.click();
-  toast("Иконка скачана");
- },
  sheetClose:function(){closeSheet();},
  undo:function(){if(undoFn){var fn=undoFn;undoFn=null;g("toast").classList.remove("show");fn();toast("Действие отменено");}}
 };
@@ -1093,11 +1007,11 @@ document.addEventListener("click",function(e){
 document.addEventListener("change",function(e){
  var t=e.target;
  if(t.dataset&&t.dataset.shop!==undefined){S.shop[t.dataset.shop]=t.checked;save();renderBudget();return;}
- if(["stKcal","stProt","stBudget","stWs","stWe","stWater","stW0","stW1","stAlc"].indexOf(t.id)>=0){readSettings();}
+ if(["stKcal","stProt","stBudget","stWs","stWe","stWater","stW0","stW1","stAlc"].indexOf(t.id)>=0){readSets();}
 });
 
-g("foodQ").addEventListener("input",function(){uiQ=this.value;renderFoodList();});
-g("foodSort").addEventListener("change",function(){S.ui.sort=this.value;save();renderFoodList();});
+g("foodQ").addEventListener("input",function(){uiQ=this.value;renderFoods();});
+g("foodSort").addEventListener("change",function(){S.ui.sort=this.value;save();renderFoods();});
 g("alcMl").addEventListener("input",renderAlc);
 
 g("importFile").addEventListener("change",function(){
@@ -1122,57 +1036,6 @@ g("importFile").addEventListener("change",function(){
 document.addEventListener("keydown",function(e){if(e.key==="Escape")closeSheet();});
 window.addEventListener("resize",function(){if(curTab==="weight")drawChart();});
 
-var dragId=null;
-g("diaryList").addEventListener("dragstart",function(e){
- var r=e.target.closest("[data-drag]");
- if(r){dragId=r.dataset.drag;e.dataTransfer.effectAllowed="move";}
-});
-g("diaryList").addEventListener("dragover",function(e){e.preventDefault();});
-g("diaryList").addEventListener("drop",function(e){
- e.preventDefault();
- var r=e.target.closest("[data-drag]");
- if(!r||!dragId)return;
- var target=r.dataset.drag,a=day().e,from=-1,to=-1;
- for(var i=0;i<a.length;i++){if(a[i].id===dragId)from=i;if(a[i].id===target)to=i;}
- if(from<0||to<0||from===to){dragId=null;return;}
- var item=a.splice(from,1)[0];
- a.splice(to,0,item);
- dragId=null;save();renderToday();toast("Порядок изменён");
-});
-
-function drawIcon(size){
- var c=document.createElement("canvas");c.width=c.height=size;
- var x=c.getContext("2d"),s=size/512;
- var gr=x.createLinearGradient(0,0,size,size);
- gr.addColorStop(0,"#0d5c3f");gr.addColorStop(1,"#0e6b63");
- x.fillStyle=gr;roundRect(x,0,0,size,size,110*s);x.fill();
- x.strokeStyle="rgba(255,255,255,.92)";x.lineWidth=26*s;
- x.beginPath();x.arc(256*s,240*s,120*s,0,7);x.stroke();
- x.fillStyle="#8fd400";
- x.beginPath();
- x.moveTo(256*s,168*s);
- x.bezierCurveTo(340*s,190*s,350*s,280*s,256*s,318*s);
- x.bezierCurveTo(162*s,280*s,172*s,190*s,256*s,168*s);
- x.fill();
- x.strokeStyle="#0d5c3f";x.lineWidth=10*s;
- x.beginPath();x.moveTo(256*s,190*s);x.lineTo(256*s,300*s);x.stroke();
- x.fillStyle="#e8940a";
- x.beginPath();x.arc(368*s,372*s,86*s,0,7);x.fill();
- x.fillStyle="#fff";x.font="bold "+Math.round(104*s)+"px system-ui";
- x.textAlign="center";x.textBaseline="middle";
- x.fillText("₽",368*s,378*s);
- return c;
-}
-function roundRect(x,a,b,w,h,r){
- x.beginPath();
- x.moveTo(a+r,b);
- x.arcTo(a+w,b,a+w,b+h,r);
- x.arcTo(a+w,b+h,a,b+h,r);
- x.arcTo(a,b+h,a,b,r);
- x.arcTo(a,b,a+w,b,r);
- x.closePath();
-}
-
 var deferred=null;
 window.addEventListener("beforeinstallprompt",function(e){
  e.preventDefault();
@@ -1181,7 +1044,7 @@ window.addEventListener("beforeinstallprompt",function(e){
  g("installHint").textContent="Нажми кнопку — приложение установится с иконкой на рабочий стол.";
 });
 window.addEventListener("appinstalled",function(){
- g("installCard").innerHTML="<h2>Приложение установлено ✓</h2><p class='muted'>Запускай с иконки на рабочем столе. Данные те же, что в браузере.</p>";
+ g("installCard").innerHTML="<h2>Приложение установлено ✓</h2><p class='muted'>Запускай с иконки на рабочем столе.</p>";
  toast("Установлено на телефон");
 });
 if(window.matchMedia("(display-mode: standalone)").matches){g("installCard").style.display="none";}
@@ -1190,10 +1053,10 @@ if("serviceWorker" in navigator&&location.protocol==="https:"){navigator.service
 function renderAll(){
  renderToday();
  renderChips();
- renderFoodList();
+ renderFoods();
  renderBudget();
  renderWeight();
- renderSettings();
+ renderSets();
  renderAlc();
  updateIF();
 }
