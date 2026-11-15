@@ -1,0 +1,26 @@
+{
+  "name": "FitБюджет — вес, питание и бюджет",
+  "short_name": "FitБюджет",
+  "description": "Калории, бюджет питания, интервальное голодание, вода, вес и праздничный учёт алкоголя. Офлайн, без аккаунтов.",
+  "lang": "ru",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f4f1e8",
+  "theme_color": "#0d5c3f",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
